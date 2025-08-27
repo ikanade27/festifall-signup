@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festifall Signup</title>
+</head>
+<body>
+  <h1>Sign Up</h1>
+  <input type="text" id="uniqname" placeholder="Enter your uniqname" />
+  <button onclick="submitUniqname()">Submit</button>
+  <p id="status"></p>
+
+  <script>
+    async function submitUniqname() {
+      const uniqname = document.getElementById("uniqname").value.trim();
+      if (!uniqname) return alert("Please enter a uniqname");
+      const res = await fetch("https://script.google.com/macros/s/AKfycbxqWCibK8ErzOmJCuE0UO5V8S9lES3eIyxIGrxtrz4Ys1_yHQfQOX6Csw-Vvi01V_ZTNA/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ uniqname })
+      });
+      if (res.ok) {
+        document.getElementById("status").textContent = "Submitted!";
+      } else {
+        document.getElementById("status").textContent = "Error. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
