@@ -3,36 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Festifall Sign-Up</title>
+  <title>Uniqname Sign-up</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      background-color: #f4f4f4;
       margin: 0;
     }
     .signup-container {
-      background: white;
+      background-color: #fff;
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       width: 300px;
       text-align: center;
     }
-    h2 {
+    .signup-container h2 {
       margin-bottom: 20px;
       color: #333;
     }
-    label {
+    .signup-container label {
       display: block;
       margin-bottom: 8px;
       text-align: left;
       color: #555;
     }
-    input[type="text"], input[type="submit"] {
+    .signup-container input[type="text"],
+    .signup-container input[type="submit"] {
       width: calc(100% - 20px);
       padding: 10px;
       margin-bottom: 15px;
@@ -40,20 +41,17 @@
       border-radius: 4px;
       box-sizing: border-box;
     }
-    input[type="submit"] {
+    .signup-container input[type="submit"] {
       background-color: #007bff;
       color: white;
       border: none;
       cursor: pointer;
       font-size: 16px;
     }
-    input[type="submit"]:hover {
+    .signup-container input[type="submit"]:hover {
       background-color: #0056b3;
     }
-    #status {
-      color: green;
-      margin-top: 10px;
-    }
+    #status { color: green; }
   </style>
 </head>
 <body>
@@ -71,18 +69,19 @@
     async function submitUniqname() {
       const uniqname = document.getElementById("uniqname").value.trim();
       if (!uniqname) return alert("Please enter a uniqname");
-
-      const res = await fetch("https://script.google.com/macros/s/AKfycbydXTyF2WG4QlxCR-URa93_snv9mhG-uLz2dHZpm_joLaimv-SiQeQtm_tQxnEzjTRKew/exec", {  // paste your Apps Script URL here
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ uniqname })
-      });
-
-      if (res.ok) {
-        document.getElementById("status").textContent = "Submitted!";
-        document.getElementById("uniqname").value = "";
-      } else {
-        document.getElementById("status").textContent = "Error. Try again.";
+      try {
+        const res = await fetch("PASTE_YOUR_SCRIPT_WEBAPP_URL_HERE", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ uniqname })
+        });
+        if (res.ok) {
+          document.getElementById("status").textContent = "Submitted!";
+        } else {
+          document.getElementById("status").textContent = "Error. Try again.";
+        }
+      } catch (err) {
+        document.getElementById("status").textContent = "Network error.";
       }
     }
   </script>
