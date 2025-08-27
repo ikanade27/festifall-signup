@@ -70,7 +70,7 @@
       const uniqname = document.getElementById("uniqname").value.trim();
       if (!uniqname) return alert("Please enter a uniqname");
       try {
-        const res = await fetch("PASTE_YOUR_SCRIPT_WEBAPP_URL_HERE", {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbyAm77Ya8Ui-cw6pjdLyR9OyYiGljvZ80kirO95FKDReUvzNyUDOW8yGm2dPsn3DH_arQ/exec", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ uniqname })
